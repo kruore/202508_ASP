@@ -1,0 +1,136 @@
+﻿<Window x:Class="Windows_ServerTest.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Windows_ServerTest"
+        mc:Ignorable="d"
+        Title="Server Dashboard"
+        Height="600"
+        Width="900"
+        Background="#121212">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- 상단 대시보드 -->
+            <RowDefinition Height="*"/>
+            <!-- 로그창 -->
+            <RowDefinition Height="Auto"/>
+            <!-- 하단 버튼 -->
+        </Grid.RowDefinitions>
+
+        <!-- ✅ 상단 대시보드 -->
+        <Border Grid.Row="0"
+                Background="#1e1e2f"
+                CornerRadius="8"
+                Padding="10"
+                Margin="0,0,0,10">
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+                
+                <!-- 서버 상태 -->
+                <StackPanel>
+                    <TextBlock Text="서버 상태"
+                               Foreground="LightGray"
+                               FontSize="14"
+                               HorizontalAlignment="Center"/>
+                    <TextBlock x:Name="ServerStatusText"
+                               Text="Stopped"
+                               Foreground="Red"
+                               FontSize="20"
+                               FontWeight="Bold"
+                               HorizontalAlignment="Center" Width="155"/>
+                </StackPanel>
+                
+                <!-- 세션 수 -->
+                <StackPanel>
+                    <TextBlock Text="세션 수"
+                               Foreground="LightGray"
+                               FontSize="14"
+                               HorizontalAlignment="Center"/>
+                    <TextBlock x:Name="SessionCountText"
+                               Text="0 / 5000"
+                               Foreground="Cyan"
+                               FontSize="20"
+                               FontWeight="Bold"
+                               HorizontalAlignment="Center" Width="122"/>
+                </StackPanel>
+
+                <!-- 수신 패킷 -->
+                <StackPanel>
+                    <TextBlock Text="수신 패킷"
+                               Foreground="LightGray"
+                               FontSize="14"
+                               HorizontalAlignment="Center" Width="118"/>
+                    <TextBlock x:Name="RecvPacketsText"
+                               Text="0"
+                               Foreground="LightGreen"
+                               FontSize="20"
+                               FontWeight="Bold"
+                               HorizontalAlignment="Center" Width="119"/>
+                </StackPanel>
+
+                <!-- 송신 패킷 -->
+                <StackPanel>
+                    <TextBlock Text="송신 패킷"
+                               Foreground="LightGray"
+                               FontSize="14"
+                               HorizontalAlignment="Center" Width="101"/>
+                    <TextBlock x:Name="SendPacketsText"
+                               Text="0"
+                               Foreground="Khaki"
+                               FontSize="20"
+                               FontWeight="Bold"
+                               HorizontalAlignment="Center" Width="120"/>
+                </StackPanel>
+
+                <!-- 업타임 -->
+                <StackPanel>
+                    <TextBlock Text="업타임"
+                               Foreground="LightGray"
+                               FontSize="14"
+                               HorizontalAlignment="Center"/>
+                    <TextBlock x:Name="UptimeText"
+                               Text="00:00:00"
+                               Foreground="White"
+                               FontSize="20"
+                               FontWeight="Bold"
+                               HorizontalAlignment="Center"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <!-- ✅ 로그창 -->
+        <TextBox x:Name="LogTextBox"
+                 Grid.Row="1"
+                 IsReadOnly="True"
+                 TextWrapping="Wrap"
+                 VerticalScrollBarVisibility="Auto"
+                 HorizontalScrollBarVisibility="Auto"
+                 FontFamily="Consolas"
+                 FontSize="13"
+                 Background="#1e1e1e"
+                 Foreground="LightGray"
+                 Margin="0,0,0,10"/>
+
+        <!-- ✅ 하단 버튼 -->
+        <StackPanel Grid.Row="2"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right">
+            <Button x:Name="StartButton"
+                    Content="Start Server"
+                    Width="130"
+                    Height="36"
+                    Margin="0,0,10,0"
+                    Background="LightGreen"
+                    Click="StartButton_Click"/>
+            <Button x:Name="StopButton"
+                    Content="Stop Server"
+                    Width="130"
+                    Height="36"
+                    Background="LightCoral"
+                    Visibility="Collapsed"
+                    Click="StopButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
