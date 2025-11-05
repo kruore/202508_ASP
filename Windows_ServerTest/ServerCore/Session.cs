@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net.Sockets;
 using System.Threading.Tasks;
+using System.IO;
 using Windows_ServerTest.Logging;
 
 namespace Windows_ServerTest.ServerCore
@@ -39,12 +40,30 @@ namespace Windows_ServerTest.ServerCore
 
             try
             {
+                if (_stream == null || !_stream.CanWrite)
+                    return;
+
                 await _stream.WriteAsync(data, 0, data.Length);
                 RaisePacketSent();
             }
+            catch (IOException ioEx)
+            {
+                _logger.Error($"[Session.SendAsync] IO 오류: {ioEx.Message}");
+                Disconnect();
+            }
+            catch (ObjectDisposedException)
+            {
+                _logger.Error("[Session.SendAsync] 스트림이 이미 닫혔습니다.");
+                Disconnect();
+            }
+            catch (SocketException sockEx)
+            {
+                _logger.Error($"[Session.SendAsync] 소켓 오류: {sockEx.SocketErrorCode}");
+                Disconnect();
+            }
             catch (Exception ex)
             {
-                _logger.Error("송신 중 오류", ex);
+                _logger.Error($"[Session.SendAsync] 예외 발생: {ex}");
                 Disconnect();
             }
         }

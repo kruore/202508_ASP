@@ -9,6 +9,7 @@ namespace Windows_ServerTest.ServerCore
         private int _writePos;  // 쓰기 시작 위치
         private int _capacity;
 
+
         public RecvBuffer()
         {
             _buffer = new byte[4096];

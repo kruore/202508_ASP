@@ -23,7 +23,7 @@ namespace Windows_ServerTest.ServerCore
             Remove(s);
         }
 
-        public SessionManager(int maxSessions = 500)
+        public SessionManager(int maxSessions = 5000)
         {
             _maxSessions = maxSessions;
         }

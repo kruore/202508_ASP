@@ -10,7 +10,7 @@ namespace Windows_ServerTest.ServerCore
         private readonly ConcurrentBag<T> _pool;
         private readonly int _maxSize;
 
-        public MemoryPool(int initialSize = 100, int maxSize = 500)
+        public MemoryPool(int initialSize = 500, int maxSize = 5000)
         {
             _pool = new ConcurrentBag<T>();
             _maxSize = maxSize;

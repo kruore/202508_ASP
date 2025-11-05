@@ -13,7 +13,7 @@ namespace Windows_ServerTest.ServerCore
         private TcpListener _listener;
         private CancellationTokenSource _cts;
         private Task _acceptLoopTask;
-        private readonly SessionManager _sessionManager = new SessionManager(500);
+        private readonly SessionManager _sessionManager = new SessionManager(5000);
         public SessionManager SessionManager => _sessionManager;
 
         private readonly ILogger _logger;
